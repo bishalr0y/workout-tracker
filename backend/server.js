@@ -1,6 +1,7 @@
 const express = require('express')
 const dotenv = require('dotenv').config()
 const colors = require('colors')
+const mongoose = require('mongoose')
 const workoutRoutes = require('./routes/workoutRoutes')
 
 const app = express()
@@ -15,11 +16,22 @@ app.use((req, res, next) => {
 
 // middleware to accept json objects (body parser)
 app.use(express.json())
+//middlware to convert form data to json
 app.use(express.urlencoded({ extended: true }))
 
-app.use('/workouts', workoutRoutes)
+app.use('/api/workouts', workoutRoutes)
 
 
-app.listen(PORT, () => {
-    console.log(`Server running at port ${PORT}`)
-})
+// Connect to the DB
+mongoose.connect(process.env.MONG_URI)
+    .then(() => {
+        // listening to requests only when the database is connected
+        app.listen(PORT, () => {
+            console.log("Database connected".cyan.underline)
+            console.log(`Server running at port ${PORT}`.blue.underline)
+        })
+    })
+    .catch((err) => {
+        console.log(err.message.red.underline)
+    })
+

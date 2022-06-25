@@ -1,3 +1,5 @@
+const mongoose = require('mongoose')
+
 //@desc: Create workout
 //@router: POST /api/workouts/
 //@access: Public
