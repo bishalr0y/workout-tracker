@@ -12,7 +12,7 @@ router.post('/',  createWorkout)
 router.get('/', getWorkouts)
 
 // update route
-router.put('/:id', updateWorkout)
+router.patch('/:id', updateWorkout)
 
 // delete route
 router.delete('/:id', deleteWorkout)
