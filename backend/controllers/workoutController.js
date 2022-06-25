@@ -12,6 +12,13 @@ const getWorkouts = (req, res) => {
     res.status(200).json({msg: 'get all the workouts'})
 }
 
+//@desc: Get (single) workout
+//@router: GET /api/workouts
+//@access: Public
+const getWorkout = (req, res) => {
+    res.status(200).json({msg: `get a single workout with id: ${req.params.id}`})
+}
+
 //@desc: Update workout
 //@router: PUT /api/workouts/
 //@access: Public
@@ -29,6 +36,7 @@ const deleteWorkout = (req, res) => {
 module.exports = {
     createWorkout,
     getWorkouts,
+    getWorkout,
     updateWorkout,
     deleteWorkout
 }

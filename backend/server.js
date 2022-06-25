@@ -1,7 +1,7 @@
 const express = require('express')
 const dotenv = require('dotenv').config()
 const colors = require('colors')
-const router = require('./routes/workoutRoutes')
+const workoutRoutes = require('./routes/workoutRoutes')
 
 const app = express()
 
@@ -15,9 +15,9 @@ app.use((req, res, next) => {
 
 // middleware to accept json objects (body parser)
 app.use(express.json())
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }))
 
-app.use('/workouts', router)
+app.use('/workouts', workoutRoutes)
 
 
 app.listen(PORT, () => {
