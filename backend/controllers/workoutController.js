@@ -57,14 +57,14 @@ const updateWorkout = async(req, res) => {
     if (!mongoose.Types.ObjectId.isValid(id)) {
         return res.status(404).json({error: 'No such workout'})
       }
-
-    const workout = await Workout.findById(id)
-
-    if(!workout) {
-        return res.status(400).json({msg: "Workout not found"})
-    }
+    
     try {
         const workout = await Workout.findOneAndUpdate(id, {...req.body})
+        
+        if(!workout) {
+            return res.status(400).json({msg: "Workout not found"})
+        }
+
         res.status(200).json(workout)
     } catch (error) {
         res.status(400).json({error: error.message})
@@ -81,14 +81,13 @@ const deleteWorkout = async(req, res) => {
         return res.status(404).json({error: 'No such workout'})
     }
 
-    const workout = await Workout.findById(id)
-
-    if(!workout) {
-        return res.status(400).json({msg: "Workout not found"})
-    }
 
     try {
-        await Workout.findByIdAndDelete(id)
+        const workout = await Workout.findByIdAndDelete(id)
+        
+        if(!workout) {
+            return res.status(400).json({msg: "Workout not found"})
+        }
         res.status(200).json({success: true})
     } catch (error) {
         res.status(400).json({error: error.message})
