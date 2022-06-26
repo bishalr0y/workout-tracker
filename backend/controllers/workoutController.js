@@ -32,8 +32,14 @@ const getWorkouts = async(req, res) => {
 //@desc: Get (single) workout
 //@router: GET /api/workouts
 //@access: Public
-const getWorkout = (req, res) => {
-    res.status(200).json({msg: `get a single workout with id: ${req.params.id}`})
+const getSingleWorkout = async(req, res) => {
+    const id = req.params.id
+    try {
+        const workout = await Workout.findById(id)
+        res.status(200).json(workout)
+    } catch (error) {
+        res.status(400).json({error: error.message})
+    }
 }
 
 //@desc: Update workout
@@ -53,7 +59,7 @@ const deleteWorkout = (req, res) => {
 module.exports = {
     createWorkout,
     getWorkouts,
-    getWorkout,
+    getSingleWorkout,
     updateWorkout,
     deleteWorkout
 }
