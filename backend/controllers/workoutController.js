@@ -43,10 +43,21 @@ const getSingleWorkout = async(req, res) => {
 }
 
 //@desc: Update workout
-//@router: PUT /api/workouts/
+//@router: PATCH /api/workouts/
 //@access: Public
-const updateWorkout = (req, res) => {
-    res.status(200).json({msg: `update workout for id: ${req.params.id}`})
+const updateWorkout = async(req, res) => {
+    const id = req.params.id
+    const workout = await Workout.findById(id)
+
+    if(!workout) {
+        res.status(400).json({msg: "Workout not found"})
+    }
+    try {
+        const workout = await Workout.findOneAndUpdate(id, {...req.body})
+        res.status(200).json(workout)
+    } catch (error) {
+        res.status(400).json({error: error.message})
+    }
 }
 
 //@desc: Delete workout
