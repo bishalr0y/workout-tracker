@@ -52,8 +52,20 @@ const updateWorkout = (req, res) => {
 //@desc: Delete workout
 //@router: DELETE /api/workouts/
 //@access: Public
-const deleteWorkout = (req, res) => {
-    res.status(200).json({msg: `delete workout for id: ${req.params.id}`})
+const deleteWorkout = async(req, res) => {
+    const id = req.params.id
+    const workout = await Workout.findById(id)
+
+    if(!workout) {
+        res.status(400).json({msg: "Workout not found"})
+    }
+
+    try {
+        await Workout.findByIdAndDelete(id)
+        res.status(200).json({success: true})
+    } catch (error) {
+        res.status(400).json({error: error.message})
+    }
 }
 
 module.exports = {
