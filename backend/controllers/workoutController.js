@@ -1,3 +1,4 @@
+const mongoose = require('mongoose')
 const Workout = require('../models/workoutModel')
 
 //@desc: Create workout
@@ -34,7 +35,12 @@ const getWorkouts = async(req, res) => {
 //@access: Public
 const getSingleWorkout = async(req, res) => {
     const id = req.params.id
-    try {
+    
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(404).json({error: 'No such workout'})
+    }
+    
+      try {
         const workout = await Workout.findById(id)
         res.status(200).json(workout)
     } catch (error) {
@@ -47,6 +53,11 @@ const getSingleWorkout = async(req, res) => {
 //@access: Public
 const updateWorkout = async(req, res) => {
     const id = req.params.id
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(404).json({error: 'No such workout'})
+      }
+
     const workout = await Workout.findById(id)
 
     if(!workout) {
@@ -65,6 +76,11 @@ const updateWorkout = async(req, res) => {
 //@access: Public
 const deleteWorkout = async(req, res) => {
     const id = req.params.id
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(404).json({error: 'No such workout'})
+    }
+
     const workout = await Workout.findById(id)
 
     if(!workout) {
