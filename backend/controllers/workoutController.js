@@ -1,17 +1,32 @@
-const mongoose = require('mongoose')
+const Workout = require('../models/workoutModel')
 
 //@desc: Create workout
 //@router: POST /api/workouts/
 //@access: Public
-const createWorkout = (req, res) => {
-    res.status(200).json({msg : 'create workout'})
+const createWorkout = async (req, res) => {
+    const { title, reps, load } = req.body
+    try {
+        const workout = await Workout.create({
+            title: title,
+            reps: reps,
+            load: load
+        })
+        res.status(200).json(workout)
+    } catch (error) {
+        res.status(400).json({error: error.message})
+    }
 }
 
 //@desc: Get workouts
 //@router: GET /api/workouts
 //@access: Public
-const getWorkouts = (req, res) => {
-    res.status(200).json({msg: 'get all the workouts'})
+const getWorkouts = async(req, res) => {
+    try {
+        const workouts = await Workout.find()
+        res.status(200).json(workouts)
+    } catch (error) {
+        res.status(400).json({error: error.message})
+    }
 }
 
 //@desc: Get (single) workout
