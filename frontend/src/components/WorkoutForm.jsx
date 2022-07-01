@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { useWorkoutsContext } from "../hooks/useWorkoutsContext"
 
 const WorkoutForm = () => {
 
@@ -6,6 +7,8 @@ const WorkoutForm = () => {
     const [load, setLoad] = useState('')
     const [reps, setReps] = useState('')
     const [error, setError] = useState(null)
+
+    const {dispatch} = useWorkoutsContext()
 
     const handleSubmit = async (e) => {
         e.preventDefault() //to prevent the default action of the from (which is getting refreshed on submit)
@@ -30,6 +33,8 @@ const WorkoutForm = () => {
             setReps('')
             setError(null)
             console.log('new workout added ', json)
+            dispatch({type: 'CREATE_WORKOUT', payload: json})
+
         }
     }
 
