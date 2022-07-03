@@ -1,10 +1,12 @@
 /* google font */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800&family=VT323&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Parisienne&display=swap');
 
 /* layout */
 :root {
   --primary: #1aac83;
   --error: #e7195a;
+  --main: #66BFBF;
 }
 body {
   background: #f1f1f1;
@@ -12,7 +14,7 @@ body {
   font-family: "Poppins";
 }
 header {
-  background: #fff;
+  background: var(--main);
 }
 header .container {
   max-width: 1400px;
@@ -23,8 +25,10 @@ header .container {
   justify-content: space-between;
 }
 header a {
-  color: #333;
+  color: #fff;
   text-decoration: none;
+  font-family: 'Parisienne', cursive;
+  font-size: 1.2rem;
 }
 .pages{
   max-width: 1400px;
@@ -39,7 +43,7 @@ header a {
   gap: 100px;
 }
 .workout-details {
-  background: #fff;
+  background: #CDF0EA;
   border-radius: 4px;
   margin: 20px auto;
   padding: 20px;
