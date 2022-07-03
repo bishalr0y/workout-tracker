@@ -22,6 +22,7 @@ export const WorkoutsContextProvider = ({ children }) => { //children is the App
         }
     }
 
+    //setting the initial value of the global state and passing the reducer
     const [state, dispatch] = useReducer(workoutsReducer, {
         workouts: null
     })
