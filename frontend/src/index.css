@@ -63,8 +63,10 @@ header a {
   cursor: pointer;
   background: #f1f1f1;
   padding: 6px;
-  border-radius: 50%;
-  color: #333;
+  border-radius: 10%;
+  background-color:  var(--error);
+  color: white;
+  box-shadow: 2px 2px 5px rgb(168, 168, 168);
 }
 
 /* new workout form */
