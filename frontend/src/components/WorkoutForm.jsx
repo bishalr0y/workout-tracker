@@ -7,6 +7,7 @@ const WorkoutForm = () => {
     const [load, setLoad] = useState('')
     const [reps, setReps] = useState('')
     const [error, setError] = useState(null)
+    const [emptyFields, setEmptyFields] = useState([])
 
     const {dispatch} = useWorkoutsContext()
 
@@ -25,6 +26,7 @@ const WorkoutForm = () => {
         
         if(!response.ok) {
             setError(json.error) //we have an error property
+            setEmptyFields(json.emptyFields)
         }
         if(response.ok) {
             //setting the states to their default values
@@ -32,6 +34,7 @@ const WorkoutForm = () => {
             setLoad('')
             setReps('')
             setError(null)
+            setEmptyFields([])
             console.log('new workout added ', json)
             dispatch({type: 'CREATE_WORKOUT', payload: json})
 
@@ -47,6 +50,7 @@ const WorkoutForm = () => {
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
+            className={emptyFields.includes('title') ? 'error': ''}
         />
         
         <label>Load (in Kg):</label>
@@ -54,6 +58,7 @@ const WorkoutForm = () => {
             type="number"
             value={load}
             onChange={(e) => setLoad(e.target.value)}
+            className={emptyFields.includes('load') ? 'error': ''}
         />
         
         <label>Reps:</label>
@@ -61,6 +66,7 @@ const WorkoutForm = () => {
             type="number"
             value={reps}
             onChange={(e) => setReps(e.target.value)}
+            className={emptyFields.includes('reps') ? 'error': ''}
         />
         <button>Add Workout</button>
         {error && <div className="error">{error}</div>}
