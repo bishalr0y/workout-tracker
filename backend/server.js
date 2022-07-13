@@ -12,7 +12,8 @@ const PORT = process.env.PORT || 4000
 // middleware to log the req
 app.use((req, res, next) => {
     console.log(req.method.red, req.path.cyan)
-    next() //to go the next middleware
+    //to go the next middleware
+    next() 
 })
 
 // middleware to accept json objects (body parser)
