@@ -1,5 +1,5 @@
 <h2>Workout-Tracker 💪</h2>
-This is an workout tracker web application 💪 which is made with MERN stack. The node.js backend consists of all of the CRUD features using MongoDB as the database. The frontend consits of adding and deleting workouts that uses React Context for global state management ⚛️ 
+This is a workout tracker web application 💪 that is made with MERN stack. The node.js backend consists of all of the CRUD features using MongoDB as the database. The frontend consits of adding and deleting workouts that use React Context for global state management ⚛️ 
 <br>
 
 
