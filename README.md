@@ -21,7 +21,7 @@ This is a workout tracker web application 💪 that is made with MERN stack. The
 ```sh
 $ npm install
 ```
-* Again, ``cd`` into the frotend folder and repeat the above command
+* Again, ``cd`` into the frontend folder and repeat the above command
 
 *This installs the required dependencies for both the frontend and backend*
 
